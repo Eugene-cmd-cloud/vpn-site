@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eugene Liberty</title>
+  <meta name="description" content="Мини-сайт подписки в стиле Liberty для одной страны." />
+  <style>
+    :root {
+      --bg: #08111f;
+      --panel: rgba(14, 27, 48, 0.86);
+      --panel-2: rgba(16, 35, 61, 0.95);
+      --text: #eef4ff;
+      --muted: #9db0d0;
+      --line: rgba(148, 176, 221, 0.18);
+      --accent: #65c7ff;
+      --accent-2: #7d8bff;
+      --ok: #4ee4a1;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(125,139,255,.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(101,199,255,.15), transparent 28%),
+        linear-gradient(180deg, #07101c 0%, #08111f 100%);
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 18px 56px;
+    }
+    .hero {
+      background: linear-gradient(180deg, rgba(20,41,69,.92), rgba(10,22,40,.92));
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -60px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(101,199,255,.24), rgba(101,199,255,0));
+      pointer-events: none;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.02);
+      font-size: 14px;
+    }
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 20px rgba(101,199,255,.45);
+    }
+    h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .sub {
+      margin: 0;
+      max-width: 740px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .btn {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      padding: 13px 18px;
+      border-radius: 16px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      transition: .18s ease;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.06); }
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(101,199,255,.22), rgba(125,139,255,.22));
+      border-color: rgba(125,139,255,.32);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 20px;
+    }
+    .muted { color: var(--muted); }
+    .server {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+    }
+    .server-title {
+      font-size: 19px;
+      font-weight: 700;
+    }
+    .server-meta {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      background: rgba(255,255,255,.025);
+    }
+    .stat-list {
+      display: grid;
+      gap: 12px;
+    }
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .stat:last-child { border-bottom: 0; }
+    .ok { color: var(--ok); }
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 6px;
+    }
+    .step {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+    }
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+    code.inline {
+      display: inline-block;
+      padding: 3px 7px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+      color: var(--text);
+      word-break: break-all;
+    }
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: .22s ease;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(9,18,33,.94);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      color: var(--text);
+      z-index: 30;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    @media (max-width: 880px) {
+      .grid { grid-template-columns: 1fr; }
+      .server { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="brand"><span class="brand-dot"></span> Liberty-style mini site</div>
+      <h1>Eugene Liberty</h1>
+      <p class="sub">
+        Небольшой статический сайт для GitHub Pages под одну подписку. Можно раздавать ссылку людям,
+        а приложение может забирать <span class="inline-link">JSON</span> или <span class="inline-link">TXT subscription</span> по прямому адресу.
+      </p>
+      <div class="actions">
+        <a class="btn primary" id="openJson" href="subs/vpnd-moldova-liberty.json">Открыть JSON</a>
+        <a class="btn" id="openTxt" href="subs/vpnd-moldova.txt">Открыть subscription TXT</a>
+        <button class="btn" id="copyJson">Скопировать ссылку на JSON</button>
+        <button class="btn" id="copyTxt">Скопировать ссылку на TXT</button>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Сервер</h2>
+        <div class="server">
+          <div>
+            <div class="server-title">🇲🇩 Moldova — Chisinau</div>
+            <div class="server-meta">
+              <span class="chip">VLESS</span>
+              <span class="chip">WS</span>
+              <span class="chip">TLS</span>
+              <span class="chip">Host: ap2.directly.chat</span>
+              <span class="chip">Path: /md/1</span>
+            </div>
+          </div>
+          <button class="btn" id="copyNode">Скопировать node URI</button>
+        </div>
+
+        <h2 style="margin-top:20px;">Что внутри</h2>
+        <div class="stat-list">
+          <div class="stat"><span class="muted">JSON-конфиг</span><span class="ok">готов</span></div>
+          <div class="stat"><span class="muted">TXT подписка</span><span class="ok">готова</span></div>
+          <div class="stat"><span class="muted">Хостинг</span><span>GitHub Pages</span></div>
+          <div class="stat"><span class="muted">Формат</span><span>одна страна / один узел</span></div>
+        </div>
+      </section>
+
+      <aside class="card">
+        <h2>Как использовать</h2>
+        <div class="steps">
+          <div class="step">1. Загрузи все файлы в репозиторий GitHub.</div>
+          <div class="step">2. Включи <strong>Settings → Pages</strong> и выбери <strong>main / root</strong>.</div>
+          <div class="step">3. После публикации страница откроется по адресу репозитория.</div>
+          <div class="step">4. В приложении используй прямой URL на <code class="inline">subs/vpnd-moldova-liberty.json</code> или <code class="inline">subs/vpnd-moldova.txt</code>.</div>
+        </div>
+
+        <h2 style="margin-top:20px;">Подсказка</h2>
+        <p class="muted" style="margin:0; line-height:1.6;">
+          Если нужен другой сервер или ещё одна страна, просто добавь новый файл в <code class="inline">subs/</code>
+          и продублируй карточку на странице.
+        </p>
+      </aside>
+    </div>
+
+    <div class="footer">
+      Сделано как аккуратная заготовка под твой личный GitHub Pages сайт.
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const NODE_URI = 'vless://2f9107cb-9af0-4c94-a89d-50437218e5fa@ap2.directly.chat:443?encryption=none&security=tls&sni=ap2.directly.chat&fp=chrome&alpn=h2%2Chttp%2F1.1&insecure=0&allowInsecure=0&type=ws&host=ap2.directly.chat&path=%2Fmd%2F1#%F0%9F%87%B2%F0%9F%87%A9%20Moldova%20-%20Chisinau';
+    const JSON_PATH = 'subs/vpnd-moldova-liberty.json';
+    const TXT_PATH = 'subs/vpnd-moldova.txt';
+
+    function absolute(path) {
+      return new URL(path, window.location.href).toString();
+    }
+
+    async function copyText(text, okText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        toast(okText);
+      } catch (e) {
+        toast('Не удалось скопировать');
+      }
+    }
+
+    function toast(text) {
+      const el = document.getElementById('toast');
+      el.textContent = text;
+      el.classList.add('show');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => el.classList.remove('show'), 1800);
+    }
+
+    document.getElementById('copyNode').addEventListener('click', () => copyText(NODE_URI, 'Node URI скопирован'));
+    document.getElementById('copyJson').addEventListener('click', () => copyText(absolute(JSON_PATH), 'Ссылка на JSON скопирована'));
+    document.getElementById('copyTxt').addEventListener('click', () => copyText(absolute(TXT_PATH), 'Ссылка на TXT скопирована'));
+  </script>
+</body>
+</html>
