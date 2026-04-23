@@ -1,0 +1,28 @@
+{
+  "title": "VPN links hub",
+  "subtitle": "GitHub Pages сайт для раздачи прямых ссылок на subscription-файлы и обычные URI.",
+  "groups": [
+    {
+      "name": "Рабочие ссылки",
+      "items": [
+        {
+          "title": "v2rayNG / NekoBox subscription (Moldova)",
+          "description": "Base64 subscription файл. Эту ссылку обычно вставляют в импорт подписки по URL.",
+          "type": "subscription",
+          "path": "subs/v2rayng-moldova-sub.txt"
+        },
+        {
+          "title": "Обычная VLESS ссылка (Moldova)",
+          "description": "Текстовый файл с одной VLESS ссылкой для ручного импорта или копирования.",
+          "type": "uri",
+          "path": "subs/vless-moldova-uri.txt"
+        }
+      ]
+    }
+  ],
+  "help": [
+    "Если приложение ждёт subscription по URL, давай ему прямую ссылку на txt-файл, а не на главную страницу сайта.",
+    "Если приложение ждёт один узел, используй обычную VLESS ссылку или текстовый файл с ней.",
+    "Для Liberio/Liberty-подобных клиентов может требоваться их собственный JSON-формат — это отдельная история."
+  ]
+}
